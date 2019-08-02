@@ -4,7 +4,8 @@ const app = express();
 const expressLayouts = require("express-ejs-layouts");
 const flash = require('connect-flash');
 const session = require('express-session')
-
+const passport = require('passport')
+require('./config/passport')(passport)
 const PORT = process.env.PORT || 3000;
 
 
@@ -19,6 +20,9 @@ app.use(session({
   saveUninitialized: true
 }))
 
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(flash())
 
 app.use((req, res, next) => {
@@ -27,6 +31,7 @@ app.use((req, res, next) => {
   res.locals.error = req.flash('error');
   next();
 })
+
 
 app.use('/', require("./routes/htmlRoutes"))
 app.use('/api', require("./routes/apiRoutes"))

@@ -13,6 +13,9 @@ router.get('/signup', function(req, res){
   res.render('signup')
 })
 
+router.get('/dashboard', function(req, res){
+  res.render('dashboard')
+})
 
 
 

@@ -4,9 +4,10 @@ const router = express.Router();
 const db = require('../models');
 const Users = db.User;
 const Posts = db.Posts;
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const passport = require('passport')
 
-router.post('/signup', function(req, res) {
+router.post('/signup', (req, res) => {
   let { fName, lName, email, password, password2 } = req.body;
 
   console.log(req.body);
@@ -35,7 +36,7 @@ router.post('/signup', function(req, res) {
       where: {
         email: email
       }
-    }).then(function(dbUsers) {
+    }).then((dbUsers) => {
       if (dbUsers) {
         errors.push({ message: 'Email already exists please log in'})
         res.render('login', {
@@ -70,5 +71,19 @@ router.post('/signup', function(req, res) {
     });
   }
 })
+
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/login',
+    failureFlash: true
+  })(req, res, next);
+});
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_message', 'You are logged out');
+  res.redirect('/login');
+});
 
 module.exports = router;
