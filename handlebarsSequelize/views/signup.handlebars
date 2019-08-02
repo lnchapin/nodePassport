@@ -12,7 +12,6 @@
             name="fName"
             class="form-control"
             placeholder="Enter First Name"
-            value="<%= typeof name != 'undefined' ? name : '' %>"
             required
           />
         </div>
@@ -24,7 +23,6 @@
           name="lName"
           class="form-control"
           placeholder="Enter Last Name"
-          value="<%= typeof name != 'undefined' ? name : '' %>"
           required
         />
       </div>
@@ -36,7 +34,7 @@
             name="email"
             class="form-control"
             placeholder="Enter Email"
-            value="<%= typeof email != 'undefined' ? email : '' %>"
+            required
           />
         </div>
         <div class="form-group">
@@ -47,7 +45,6 @@
             name="password"
             class="form-control"
             placeholder="Create Password"
-            value="<%= typeof password != 'undefined' ? password : '' %>"
             required
           />
         </div>
@@ -59,7 +56,6 @@
             name="password2"
             class="form-control"
             placeholder="Confirm Password"
-            value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
             required
           />
         </div>
