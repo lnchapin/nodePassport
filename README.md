@@ -1,7 +1,7 @@
 # Local Strategy Passport
 
 ## Background
-This was converted from Brad Traversy's [Node.js With Passport Authentication](https://www.youtube.com/watch?v=6FOq4cUdH8k) video. This video was written with EJS and Mongo. I converted this to Sequalize with EJS and Sequalize with Handlebars.
+This was converted from Brad Traversy's [Node.js With Passport Authentication](https://www.youtube.com/watch?v=6FOq4cUdH8k) video. That tutorial was written with EJS and Mongo. I converted this to Sequalize with EJS and Sequalize with Handlebars.
 
 ## To Run Locally
 - `git clone`
