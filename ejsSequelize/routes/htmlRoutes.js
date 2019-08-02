@@ -14,9 +14,18 @@ router.get('/signup', function(req, res){
   res.render('signup')
 })
 
-router.get('/dashboard', ensureAuthenticated, function(req, res){
-  res.render('dashboard')
-})
+router.get('/dashboard', ensureAuthenticated, (req, res) =>
+  res.render('dashboard', {
+    user: req.user
+  })
+);
+
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  req.flash('success_message', 'You are logged out');
+  res.redirect('/login');
+});
 
 
 
