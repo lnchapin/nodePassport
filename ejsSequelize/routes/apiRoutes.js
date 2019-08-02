@@ -1,14 +1,18 @@
+require('dotenv').config()
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
 const Users = db.User;
 const Posts = db.Posts;
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 
 router.post('/signup', function(req, res) {
-  const { name, email, password, password2 } = req.body;
+  let { fName, lName, email, password, password2 } = req.body;
+
+  console.log(req.body);
+
   let errors =[]
-  if (!name || !email || !password || !password2 ) {
+  if (!fName || !lName || !email || !password || !password2 ) {
     errors.push({ message: 'Please fill in all fields'})
   }
   if (password !== password2){
@@ -20,7 +24,8 @@ router.post('/signup', function(req, res) {
   if (errors.length > 0) {
     res.render('signup', {
       errors,
-      name,
+      fName,
+      lName,
       email,
       password,
       password2
@@ -38,7 +43,29 @@ router.post('/signup', function(req, res) {
           email
         })
       } else {
-        res.send('new peep')
+        console.log(typeof process.env.SALT_VAL);
+        bcrypt.genSalt(parseInt(process.env.SALT_VAL), function(err, salt) {
+          bcrypt.hash(password, salt, function(err, hash){
+            if(err) throw err;
+            password = hash
+            console.log("password", password);
+            Users.create({
+                firstName: req.body.fName,
+                lastName: req.body.lName,
+                email: req.body.email,
+                password: password
+              })
+                // pass the result of our call
+                .then(function(dbUser) {
+                    // log the result to our terminal/bash window
+                    console.log(dbUser);
+                    // redirect
+                    req.flash('success_message', 'You are now signed up and can log in')
+                    res.redirect("/login");
+                  })
+                  .catch(err => console.log(err));
+          })
+        })
       }
     });
   }

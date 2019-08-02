@@ -17,13 +17,13 @@ module.exports = {
         firstName:"Lindsay",
         lastName:"Chapin",
         email:"lnchapin@gmail.com",
-        password: "password"
+        password: "$2a$13$mAT8npHSwnQi5aDAZOt/TuLGqVA7O9TA0t4Vb9vUnPK6BtrypNYQS"
       },
       {
         firstName:"Test",
         lastName:"Testing",
         email:"test@test.com",
-        password: "password"
+        password: "$2a$13$mAT8npHSwnQi5aDAZOt/TuLGqVA7O9TA0t4Vb9vUnPK6BtrypNYQS"
       }
     ], {});
   },
