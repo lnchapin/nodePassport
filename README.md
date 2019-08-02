@@ -11,5 +11,7 @@ This was converted from Brad Traversy's [Node.js With Passport Authentication](h
 - run `npx sequelize db:migrate` and `npx sequelize db:seed:all`
 - `nodemon server.js`
 
+* The password for the seed accounts are `password`
+
 ## Technology Used
 Express, Node, Sequalize, Passport, EJS, Handlebars, and related packages.
