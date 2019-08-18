@@ -7,7 +7,7 @@ This was converted from Brad Traversy's [Node.js With Passport Authentication](h
 - `git clone`
 - move into the file that you want to work with
 - `npm i`
-- create a `.env` file and add SALT_VAL and SESSION_SECRET (the seeds file uses a SALT_VAL of 13)
+- create a `.env` file and add SALT_VAL and SESSION_SECRET 
 - run `npx sequelize db:migrate` and `npx sequelize db:seed:all`
 - `nodemon server.js`
 
